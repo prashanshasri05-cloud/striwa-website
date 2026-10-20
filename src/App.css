@@ -393,33 +393,71 @@ h1 em, h2 em {
 }
 
 .community-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: var(--plum);
+  background-color: #FFF7F0;
   color: white;
 }
 
+.community-copy {
+  background-color: #FFF7F0;
+  color: #572640;
+  min-width: 0;
+  padding: 40px;
+  overflow: visible;
+}
+
+.community-copy h2 {
+  color: #572640;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  letter-spacing: normal;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+  margin: 20px 0;
+}
+
+.community-copy h2 em {
+  color: #572640;
+  font-style: italic;
+}
+
+.community-copy p {
+  color: #572640;
+  line-height: 1.8;
+}
+
+.community-copy .section-label {
+  color: #572640;
+}
+
 .community-image {
-  min-height: 480px;
   position: relative;
+  min-width: 0;
   overflow: hidden;
+  border-radius: 22px;
+  background: #f8e8e7;
 }
 
 .community-image img {
-  position: absolute;
-  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  background: center;
 }
 
 .image-note {
   position: absolute;
-  bottom: 25px;
-  left: 25px;
-  background: var(--ivory);
-  color: var(--plum);
-  padding: 13px 16px;
-  font-size: 10px;
+  left: 18px;
+  bottom: 18px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  background: #fff7f0;
+  color: #572640;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   font-weight: 700;
-  letter-spacing: 2px;
 }
 
 .community-copy {
@@ -779,4 +817,324 @@ h1 em, h2 em {
   background-color: #54203A;
   border: #54203A;
   color: #FFF4E9;
+}
+
+/* Opportunities section */
+.opportunities-section,
+.workshops-section {
+  padding: 100px 8%;
+}
+
+.opportunities-section {
+  background: #F8EFE5;
+}
+
+.opportunities-section .section-heading,
+.workshops-section .section-heading {
+  margin: 28px 0 42px;
+}
+
+.opportunities-grid,
+.workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.opportunity-card,
+.workshop-card {
+  padding: 30px;
+  border: 1px solid #E3D2D8;
+  border-radius: 4px;
+  background: #FFF9F3;
+}
+
+.opportunity-number {
+  color: #D98BA8;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.opportunity-card h3,
+.workshop-card h3 {
+  color: #6B2147;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  margin: 22px 0 14px;
+}
+
+.opportunity-card p,
+.workshop-card p {
+  color: #705866;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.opportunity-card .text-link {
+  color: #6B2147;
+}
+
+.workshops-section {
+  background: #FFF9F3;
+}
+
+.workshops-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.workshop-topline {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #6B2147;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.workshop-topline span:last-child {
+  color: #9A6C82;
+}
+
+.workshop-card .button {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.workshop-note {
+  margin-top: 28px;
+  color: #705866;
+  font-size: 13px;
+}
+
+/* Responsive layout */
+@media (max-width: 760px) {
+  .opportunities-section,
+  .workshops-section {
+    padding: 65px 6%;
+  }
+
+  .opportunities-grid,
+  .workshops-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opportunity-card,
+  .workshop-card {
+    padding: 24px;
+  }
+}
+
+/* STRIWA Community connection section */
+.community-connect {
+  background: #F8EFE5;
+  padding: 90px 8%;
+}
+
+.community-connect-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 70px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.community-connect-copy h2 {
+  color: #6B2147;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.12;
+  margin: 0 0 24px;
+}
+
+.community-connect-copy h2 em {
+  color: #D98BA8;
+}
+
+.community-connect-copy p {
+  color: #705866;
+  line-height: 1.9;
+  max-width: 560px;
+}
+
+.community-connect-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.social-connect {
+  text-align: center;
+}
+
+.social-connect h3 {
+  color: #6B2147;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #6B2147;
+  text-decoration: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-icons i {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #EBC4CC;
+  font-size: 27px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.social-icons a:hover i {
+  background: #D98BA8;
+  transform: translateY(-4px);
+}
+
+.social-note {
+  color: #9A6C82;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 28px;
+}
+
+@media (max-width: 760px) {
+  .community-connect {
+    padding: 65px 6%;
+  }
+
+  .community-connect-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .social-connect h3 {
+    font-size: 24px;
+  }
+
+  .social-icons {
+    gap: 20px;
+  }
+}
+/* The Bigger Picture — STRIWA */
+
+.community-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+  padding: 80px 7%;
+  background-color: #fff7f0;
+  color: #572640;
+  overflow: visible;
+}
+
+.community-image {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 430px;
+  overflow: hidden;
+  border-radius: 22px;
+  background-color: #f8e8e7;
+}
+
+.community-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-note {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  background: #fff7f0;
+  color: #572640;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.community-copy {
+  min-width: 0;
+  color: #572640;
+}
+
+.community-copy .section-label {
+  color: #572640;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.community-copy h2 {
+  margin: 20px 0;
+  color: #572640;
+  font-size: clamp(30px, 3.2vw, 48px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: normal;
+  overflow-wrap: normal;
+}
+
+.community-copy h2 em {
+  color: #572640;
+  font-style: italic;
+}
+
+.community-copy p {
+  color: #572640;
+  opacity: 1;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.community-copy .button-light {
+  display: inline-block;
+  margin-top: 18px;
+  background: #572640;
+  color: #fff7f0;
+  border: 1px solid #572640;
+}
+
+@media (max-width: 768px) {
+  .community-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 50px 6%;
+  }
+
+  .community-image {
+    height: 300px;
+  }
+
+  .community-copy h2 {
+    font-size: clamp(30px, 8vw, 42px);
+  }
 }
