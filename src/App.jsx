@@ -1,10 +1,14 @@
 import { useState } from "react";
 import "./App.css";
+import Auth from "./Auth";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
 
+  if (window.location.pathname === "/login") {
+  return <Auth />;
+}
   function handleJoin(event) {
     event.preventDefault();
 
@@ -42,7 +46,7 @@ function App() {
           <a href="#community" onClick={() => setMenuOpen(false)}>Community</a>
           <a className="nav-cta" href="#connect" onClick={() => setMenuOpen(false)}>
             Get in Touch ↗
-          </a>
+          </a> 
           <a
             className="profile-link"
             href="/login"
