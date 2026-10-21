@@ -2,25 +2,53 @@ import { useState } from "react";
 import "./App.css";
 import Auth from "./Auth";
 
+// In development, Vite forwards /api to the Python backend.
+const API = import.meta.env.VITE_API_URL || "";
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [joinMsg, setJoinMsg] = useState("");
+
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem("striwa_user"));
+  } catch {
+    user = null;
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("striwa_token");
+    localStorage.removeItem("striwa_user");
+    window.location.href = "/";
+  }
 
   if (window.location.pathname === "/login") {
   return <Auth />;
 }
-  function handleJoin(event) {
+  async function handleJoin(event) {
     event.preventDefault();
 
     if (!email.trim()) return;
 
-    const subject = encodeURIComponent("Connecting with STRIWA");
-    const body = encodeURIComponent(
-      `Hello STRIWA team,\n\nI would like to learn more about STRIWA.\nMy email: ${email}`
-    );
+    setJoinMsg("Sending...");
+    try {
+      const res = await fetch(`${API}/api/join`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
 
-    window.location.href =
-      `mailto:hello@striwa.org?subject=${subject}&body=${body}`;
+      if (res.ok) {
+        setJoinMsg(data.message);
+        setEmail("");
+      } else {
+        setJoinMsg("Please enter a valid email address.");
+      }
+    } catch {
+      setJoinMsg("Cannot reach the server. Please try again later.");
+    }
   }
 
   return (
@@ -67,7 +95,28 @@ function App() {
               <circle cx="12" cy="8" r="4" />
               <path d="M4 21a8 8 0 0 1 16 0" />
             </svg>
+            {user && (
+              <span style={{ marginLeft: 6, fontSize: 14 }}>
+                {user.name.split(" ")[0]}
+              </span>
+            )}
           </a>
+          {user && (
+            <button
+              type="button"
+              onClick={handleLogout}
+              style={{
+                marginLeft: 12,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                font: "inherit",
+                textDecoration: "underline",
+              }}
+            >
+              Log out
+            </button>
+          )}
         </nav>
       </header>
 
@@ -314,6 +363,30 @@ function App() {
                  another on the journey towards confidence and financial
                  independence.
               </p>
+
+              <form
+                onSubmit={handleJoin}
+                style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "20px 0" }}
+              >
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  style={{
+                    flex: "1 1 220px",
+                    padding: "12px 14px",
+                    borderRadius: 8,
+                    border: "1px solid #ccc",
+                    font: "inherit",
+                  }}
+                />
+                <button type="submit" className="button button-primary">
+                  Keep me updated
+                </button>
+              </form>
+              {joinMsg && <p>{joinMsg}</p>}
 
               <div className="community-connect-actions">
                 <a className="button button-primary" href="#opportunities">
