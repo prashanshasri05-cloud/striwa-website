@@ -85,3 +85,14 @@
   color: #6B2147;
   text-decoration: none;
 }
+
+.auth-error {
+  color: #b3261e;
+  font-size: 14px;
+  margin: 0;
+}
+.auth-hint{
+  color: #6b6b6b;
+  font-size: 13 px;
+  margin: -4px 0 0;
+}
